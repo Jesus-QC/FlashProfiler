@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Reflection;
 using Exiled.API.Features;
-using Exiled.Events.Extensions;
 using HarmonyLib;
 
 namespace FlashProfiler
@@ -13,7 +10,7 @@ namespace FlashProfiler
         public override string Prefix { get; } = "flash_profiler";
         public override string Author { get; } = "Jesus-QC";
         public override Version Version { get; } = new Version(0, 0, 1);
-        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 5);
+        public override Version RequiredExiledVersion { get; } = new Version(5,0,0);
 
         private Harmony _harmony;
 
