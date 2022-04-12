@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime;
 using System.Linq;
 using System.Reflection;
 using Exiled.API.Features;
@@ -22,6 +23,8 @@ namespace FlashProfiler.Patches
 
             var watch = new Stopwatch();
 
+            var MemoryCount = GC.GetTotalMemory(true);
+
             var eventName = ev.GetType().FullName;
 
             Log.Debug($"+ {ev.Method.Name}");
@@ -33,11 +36,12 @@ namespace FlashProfiler.Patches
                     watch.Restart();
                     handler.DynamicInvoke(arg);
                     watch.Stop();
-                    Log.Debug(watch.ElapsedMilliseconds + $"ms {handler.Method.Name}::{handler.Method.ReflectedType?.FullName}");
+                    Log.Debug(watch.ElapsedMilliseconds + $"ms | {MemoryCount} mb | {handler.Method.Name}::{handler.Method.ReflectedType?.FullName}");
                 }
                 catch (Exception ex)
                 {
-                    Event.LogException(ex, handler.Method.Name, handler.Method.ReflectedType?.FullName, eventName);
+                    /*Event.LogException(ex, handler.Method.Name, handler.Method.ReflectedType?.FullName, eventName);*/
+                    Log.Error(ex);
                 }
             }
             
@@ -71,7 +75,8 @@ namespace FlashProfiler.Patches
                 }
                 catch (Exception ex)
                 {
-                    Event.LogException(ex, handler.Method.Name, handler.Method.ReflectedType?.FullName, eventName);
+                    /*Event.LogException(ex, handler.Method.Name, handler.Method.ReflectedType?.FullName, eventName);*/
+                    Log.Error(ex);
                 }
             }
             
