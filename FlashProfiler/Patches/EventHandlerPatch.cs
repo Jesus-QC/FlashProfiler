@@ -53,12 +53,12 @@ namespace FlashProfiler.Patches
         {
             if (ev == null)
                 return false;
-            
-            Log.Debug(ev.Method.Name);
 
             var watch = new Stopwatch();
             
             var eventName = ev.GetType().FullName;
+            
+            Log.Debug($"+ {ev.Method.Name}");
 
             foreach (var handler in ev.GetInvocationList())
             {
