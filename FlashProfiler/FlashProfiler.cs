@@ -9,7 +9,7 @@ namespace FlashProfiler
         public override string Name { get; } = "FlashProfiler";
         public override string Prefix { get; } = "flash_profiler";
         public override string Author { get; } = "Jesus-QC";
-        public override Version Version { get; } = new Version(0, 0, 1);
+        public override Version Version { get; } = new Version(0, 0, 2);
         public override Version RequiredExiledVersion { get; } = new Version(5,0,0);
 
         private Harmony _harmony;
